@@ -1,15 +1,16 @@
-package com.example.object.theater.policy;
+package com.example.object.theater.policy.impl;
 
 import com.example.object.theater.Money;
 import com.example.object.theater.Screening;
 import com.example.object.theater.condition.DiscountCondition;
+import com.example.object.theater.policy.DefaultDiscountPolicy;
 
-public class PercentDiscountPolicy extends DiscountPolicy{
+public class PercentDiscountPolicy extends DefaultDiscountPolicy {
 
     private double percent;
 
-    public PercentDiscountPolicy(DiscountCondition discountCondition, double percent) {
-        super(discountCondition);
+    public PercentDiscountPolicy(double percent, DiscountCondition... discountConditions) {
+        super(discountConditions);
         this.percent = percent;
     }
 

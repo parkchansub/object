@@ -7,14 +7,14 @@ import java.time.LocalTime;
 public class Screening {
 
     private Movie movie;
-    private int Sequence;
+    private int sequence;
     private LocalDateTime whenScreened;
 
 
 
     public Screening(Movie movie, int sequence, LocalDateTime whenScreened) {
         this.movie = movie;
-        Sequence = sequence;
+        sequence = sequence;
         this.whenScreened = whenScreened;
     }
 
@@ -28,7 +28,7 @@ public class Screening {
     }
 
     public int getSequence() {
-        return Sequence;
+        return sequence;
     }
 
     public LocalDateTime getWhenScreened() {
@@ -36,7 +36,7 @@ public class Screening {
     }
 
     public boolean isSequence(int sequence) {
-        return false;
+        return this.sequence == sequence;
     }
 
     public LocalDateTime getStartTime() {
