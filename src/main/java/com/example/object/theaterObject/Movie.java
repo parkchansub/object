@@ -1,21 +1,14 @@
-package com.example.object.theater;
+package com.example.object.theaterObject;
 
-import com.example.object.theater.condition.DiscountCondition;
-import com.example.object.theater.policy.DiscountPolicy;
+import com.example.object.theaterObject.policy.DiscountPolicy;
 
 import java.time.Duration;
-import java.util.List;
 
 public class Movie {
 
     private String title;
     private Duration runningTime;
     private Money fee;
-    private List<DiscountCondition> discountConditions;
-
-    private MovieType movieType;
-    private Money discountAmount;
-    private double discountPercent;
     private DiscountPolicy discountPolicy;
 
     public Movie(String title, Duration runningTime, Money fee, DiscountPolicy discountPolicy) {
@@ -31,9 +24,5 @@ public class Movie {
 
     public Money getFee() {
         return fee;
-    }
-
-    public DiscountPolicy getDiscountPolicy() {
-        return discountPolicy;
     }
 }

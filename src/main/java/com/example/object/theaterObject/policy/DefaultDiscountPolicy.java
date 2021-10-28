@@ -1,8 +1,8 @@
-package com.example.object.theater.policy;
+package com.example.object.theaterObject.policy;
 
-import com.example.object.theater.Money;
-import com.example.object.theater.Screening;
-import com.example.object.theater.condition.DiscountCondition;
+import com.example.object.theaterObject.Money;
+import com.example.object.theaterObject.Screening;
+import com.example.object.theaterObject.condition.DiscountCondition;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package com.example.object.theater;
+package com.example.object.theaterObject;
 
 public class Reservation {
 

@@ -1,8 +1,6 @@
-package com.example.object.theater;
+package com.example.object.theaterObject;
 
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class Screening {
 

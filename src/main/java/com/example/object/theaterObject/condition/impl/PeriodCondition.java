@@ -1,7 +1,7 @@
-package com.example.object.theater.condition.impl;
+package com.example.object.theaterObject.condition.impl;
 
-import com.example.object.theater.Screening;
-import com.example.object.theater.condition.DiscountCondition;
+import com.example.object.theaterObject.Screening;
+import com.example.object.theaterObject.condition.DiscountCondition;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;

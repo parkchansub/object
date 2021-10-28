@@ -1,9 +1,9 @@
-package com.example.object.theater.policy.impl;
+package com.example.object.theaterObject.policy.impl;
 
-import com.example.object.theater.Money;
-import com.example.object.theater.Screening;
-import com.example.object.theater.condition.DiscountCondition;
-import com.example.object.theater.policy.DefaultDiscountPolicy;
+import com.example.object.theaterObject.Money;
+import com.example.object.theaterObject.Screening;
+import com.example.object.theaterObject.condition.DiscountCondition;
+import com.example.object.theaterObject.policy.DefaultDiscountPolicy;
 
 public class AmountDiscountPolicy extends DefaultDiscountPolicy {
 

@@ -1,4 +1,4 @@
-package com.example.object.theater;
+package com.example.object.theaterData;
 
 public enum MovieType {
     AMOUNT_DISCOUNT,
