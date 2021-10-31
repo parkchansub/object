@@ -5,6 +5,11 @@ import com.example.object.theaterObject.Money;
 public class ReservationAgency {
 
     public Reservation reserve(Screening screening, Customer customer, int audienceCount) {
+        Money fee = screening.calculateFee(audienceCount);
+        return new Reservation(customer, screening, fee,audienceCount);
+    }
+
+    public Reservation reservedata(Screening screening, Customer customer, int audienceCount) {
         Movie movie = screening.getMovie();
 
         boolean discountable = false;
