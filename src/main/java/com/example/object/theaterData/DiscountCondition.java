@@ -1,5 +1,7 @@
 package com.example.object.theaterData;
 
+import com.example.object.theaterObject.Screening;
+
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
@@ -19,6 +21,7 @@ public class DiscountCondition {
 
 
     public boolean isDiscountable(DayOfWeek dayOfWeek, LocalTime time) {
+
         if (type != DiscountConditionType.PERIOD) {
             throw new IllegalArgumentException();
         }
@@ -34,6 +37,13 @@ public class DiscountCondition {
 
         return this.sequence == sequence;
     }
+
+    public boolean isSatisfiedBy(Screening screening){
+        return dayOfWeek.equals(screening.getWhenScreened().getDayOfWeek())&&
+                startTime.compareTo(screening.getWhenScreened().toLocalTime()) <=0 &&
+                endTime.compareTo(screening.getWhenScreened().toLocalTime()) >=0;
+    }
+
 
     public void setType(DiscountConditionType type) {
         this.type = type;

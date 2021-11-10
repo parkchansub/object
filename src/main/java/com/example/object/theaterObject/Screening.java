@@ -15,9 +15,18 @@ public class Screening {
         sequence = sequence;
         this.whenScreened = whenScreened;
     }
-
+    /* 1장에서 만든 method
     public Reservation reserve(Customer customer, int audienceCount) {
         return new Reservation(customer, audienceCount, movie.getFee(), this);
+    }
+    */
+
+    public Reservation reserve(Customer customer, int audienceCount){
+        return new Reservation(customer, audienceCount, calculateFee(audienceCount), this);
+    }
+
+    private Money calculateFee(int audienceCount) {
+        return movie.calculateMovieFee(this).times(audienceCount);
     }
 
 
