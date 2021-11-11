@@ -1,4 +1,4 @@
-package com.example.object.theaterObject;
+package com.example.object.theaterObjectV2;
 
 public enum MovieType {
     AMOUNT_DISCOUNT,     //금액 할인 정책

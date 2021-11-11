@@ -2,6 +2,7 @@ package com.example.object.theaterObject;
 
 import com.example.object.theaterData.DiscountCondition;
 import com.example.object.theaterObject.policy.DiscountPolicy;
+import com.example.object.theaterObjectV2.MovieType;
 
 import java.time.Duration;
 import java.util.List;
