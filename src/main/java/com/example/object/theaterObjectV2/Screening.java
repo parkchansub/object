@@ -10,6 +10,7 @@ public class Screening {
     private int sequence;
     private LocalDateTime whenScreened;
 
+
     public Reservation reserve(Customer customer, int audienceCount){
         return new Reservation(customer, audienceCount, calculateFee(audienceCount), this);
     }
