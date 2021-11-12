@@ -5,49 +5,68 @@ import com.example.object.theaterObject.Money;
 public class ReservationAgency {
 
     public Reservation reserve(Screening screening, Customer customer, int audienceCount) {
-        Money fee = screening.calculateFee(audienceCount);
-        return new Reservation(customer, screening, fee,audienceCount);
+        boolean discountable = checkDiscountable(screening);
+        Money fee = calculateFee(screening, discountable, audienceCount);
+        return createReservation(screening, customer, audienceCount, fee);
     }
 
-    public Reservation reservedata(Screening screening, Customer customer, int audienceCount) {
-        Movie movie = screening.getMovie();
+    private boolean checkDiscountable(Screening screening) {
+        return screening.getMovie().getDiscountConditions().stream()
+                .anyMatch(condition -> isDiscountable(screening, condition));
+    }
 
-        boolean discountable = false;
-        for (DiscountCondition condition : movie.getDiscountConditions()) {
-            if (condition.getType() == DiscountConditionType.PERIOD) {
-                discountable = screening.getWhenScreened().getDayOfWeek().equals(condition.getDayOfWeek())
-                        && condition.getStartTime().compareTo(screening.getWhenScreened().toLocalTime()) <= 0
-                        && condition.getEndTime().compareTo(screening.getWhenScreened().toLocalTime()) >= 0;
 
-            } else {
-                discountable = condition.getSequence() == screening.getSequence();
-            }
-
-            if (discountable) {
-                break;
-            }
+    private boolean isDiscountable(Screening screening, DiscountCondition condition) {
+        if (condition.getType() == DiscountConditionType.PERIOD) {
+            return isSatisfiedByPeriod(screening, condition);
         }
+        return isSatifiedBySequence(screening, condition);
+    }
 
-        Money fee;
+    private boolean isSatifiedBySequence(Screening screening, DiscountCondition condition) {
+        return condition.getSequence() == screening.getSequence();
+    }
+
+    private boolean isSatisfiedByPeriod(Screening screening, DiscountCondition condition) {
+        return screening.getWhenScreened().getDayOfWeek().equals(condition.getDayOfWeek())
+                && condition.getStartTime().compareTo(screening.getWhenScreened().toLocalTime()) <= 0
+                && condition.getEndTime().compareTo(screening.getWhenScreened().toLocalTime()) >= 0;
+    }
+
+    private Money calculateFee(Screening screening, boolean discountable, int audienceCount) {
         if (discountable) {
-            Money discountAmount = Money.ZERO;
-            switch (movie.getMovieType()) {
-                case AMOUNT_DISCOUNT:
-                    discountAmount = movie.getDiscountAmount();
-                    break;
-                case PERCENT_DISCOUNT:
-                    discountAmount = movie.getFee().times(movie.getDiscountPercent());
-                    break;
-                case NONE_DISCOUNT:
-                    discountAmount = Money.ZERO;
-                    break;
-            }
-
-            fee = movie.getFee().minus(discountAmount);
-        } else {
-            fee = movie.getFee();
+            return screening.getMovie().getFee()
+                    .minus(calculateDiscountedFee(screening.getMovie()))
+                    .times(audienceCount);
         }
+        return screening.getMovie().getFee().times(audienceCount);
+    }
 
+    private Reservation createReservation(Screening screening, Customer customer, int audienceCount, Money fee) {
         return new Reservation(customer, screening, fee, audienceCount);
+    }
+
+    private Money calculateDiscountedFee(Movie movie) {
+        switch (movie.getMovieType()) {
+            case AMOUNT_DISCOUNT:
+                return calculateAmountDiscountedFee(movie);
+            case PERCENT_DISCOUNT:
+                return calculatePercentDiscountedFee(movie);
+            case NONE_DISCOUNT:
+                return calculateNoneDiscountedFee();
+        }
+        throw new IllegalArgumentException();
+    }
+
+    private Money calculateNoneDiscountedFee() {
+        return Money.ZERO;
+    }
+
+    private Money calculatePercentDiscountedFee(Movie movie) {
+        return movie.getFee().times(movie.getDiscountPercent());
+    }
+
+    private Money calculateAmountDiscountedFee(Movie movie) {
+        return movie.getDiscountAmount();
     }
 }

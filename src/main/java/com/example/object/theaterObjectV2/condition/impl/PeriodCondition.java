@@ -1,5 +1,6 @@
 package com.example.object.theaterObjectV2.condition.impl;
 
+import com.example.object.theaterObject.condition.DiscountConditionType;
 import com.example.object.theaterObjectV2.Screening;
 import com.example.object.theaterObjectV2.condition.DiscountCondition;
 
@@ -22,4 +23,6 @@ public class PeriodCondition implements DiscountCondition {
                 startTime.compareTo(screening.getWhenScreened().toLocalTime()) <= 0 &&
                 endTime.compareTo(screening.getWhenScreened().toLocalTime())>=0;
     }
+
+
 }

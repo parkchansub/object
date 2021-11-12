@@ -1,5 +1,6 @@
 package com.example.object.theaterObjectV2.condition.impl;
 
+import com.example.object.theaterObject.condition.DiscountConditionType;
 import com.example.object.theaterObjectV2.Screening;
 import com.example.object.theaterObjectV2.condition.DiscountCondition;
 
@@ -13,4 +14,6 @@ public class SequenceCondition implements DiscountCondition {
     public boolean isSatisfiedBy(Screening screening) {
         return sequence == screening.getSequence();
     }
+
+
 }
