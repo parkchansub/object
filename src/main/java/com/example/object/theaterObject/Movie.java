@@ -1,6 +1,6 @@
 package com.example.object.theaterObject;
 
-import com.example.object.theaterData.DiscountCondition;
+import com.example.object.theaterObject.condition.DiscountCondition;
 import com.example.object.theaterObject.policy.DiscountPolicy;
 import com.example.object.theaterObjectV2.MovieType;
 

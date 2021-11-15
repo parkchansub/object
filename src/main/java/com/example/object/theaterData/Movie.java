@@ -42,7 +42,7 @@ public class Movie {
 
     }
 
-    public boolean isDiscountable(LocalDateTime whenScreened, int sequence) {
+  /*  public boolean isDiscountable(LocalDateTime whenScreened, int sequence) {
         for (DiscountCondition condition : discountConditions) {
             if (condition.getType() == DiscountConditionType.PERIOD) {
                 if (condition.isDiscountable(whenScreened.getDayOfWeek(), whenScreened.toLocalTime())) {
@@ -55,7 +55,7 @@ public class Movie {
             }
         }
         return false;
-    }
+    }*/
 
 
 
